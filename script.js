@@ -53,3 +53,35 @@ function displayBook(myLibrary) {
 }
 
 displayBook(myLibrary);
+
+// making the modal fuctional
+let modal = document.querySelector("dialog");
+let addNewBook = document.querySelector(".new-book");
+let closeModal = document.querySelector(".close-modal")
+let form = document.querySelector("form");
+
+addNewBook.addEventListener("click", () => {
+  modal.showModal();
+})
+
+closeModal.addEventListener("click", () => {
+  modal.close();
+})
+
+modal.addEventListener("submit", (e) => {
+e.preventDefault();
+let book = new Book();
+book.name = document.querySelector("#bname").value;
+book.author = document.querySelector("#author").value;
+book.pages = document.querySelector("#pages").value;
+// Add book.read here
+book.id = crypto.randomUUID();
+myLibrary.push(book);
+
+form.reset();
+modal.close();
+console.log(myLibrary);
+});
+
+
+

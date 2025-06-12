@@ -6,16 +6,33 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="main-container">
-        <div class="header">
-            <h1>Library App</h1>
-        </div>
-        <div class="books-container">
-            <!-- <div class="book">
-                <h2 class="title">test</h2> -->
-            </div>
+    <div class="wrapper">
+        <div class="header"><h1>Library App</h1></div>
+        <div class="library">
+            <button class="new-book">New Book</button>
+            <div class="books-container"></div>
         </div>
     </div>
+    <dialog closedby="any">
+        <form method="dialog">
+            <label for="bname">Book Name</label>
+            <input type="text" name="bname" id="bname" required>
+
+            <label for="author">Author</label>
+            <input type="text" name="author" id="author" required>
+            
+            <label for="pages">Total Pages</label>
+            <input type="text" name="pages" id="pages" required>
+            
+            <input type="radio" name="status" id="yes">
+            <label for="yes">YES</label>
+            <input type="radio" name="status" id="no" checked>
+            <label for="no">NO</label>
+
+            <input type="submit" value="ADD BOOK">
+            <button class="close-modal" type="button">Close</button>
+        </form>
+    </dialog>
     <script src="script.js"></script>
 </body>
 </html>
