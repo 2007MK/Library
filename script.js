@@ -99,7 +99,7 @@ modal.close();
 // Example books
 addBookToLibrary("The Hobbit", "J.R.R. Tolkein", 310, true);
 addBookToLibrary("Angels and Demons", "Dan Brown", 616, true);
-addBookToLibrary("The Alchemist", "Paulo Coelho", 19, true);
+addBookToLibrary("The Alchemist", "Paulo Coelho", 192, true);
 addBookToLibrary("Atomic Habits", "James Clear", 320, false);
 addBookToLibrary("The Book Thief", "Markus Zusak", 552, false)
 

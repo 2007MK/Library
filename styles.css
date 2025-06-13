@@ -29,8 +29,6 @@ body {
   display: flex;
   flex-direction: column;
   grid-area: library;
-  height: 100%;
-  width: 100%;
   align-items: center;
   gap: 1rem;
 }
@@ -42,18 +40,25 @@ body {
   color: var(--optional-color-1);
   font-weight: 1000;
   cursor: pointer;
+  border-radius: 10px;
+}
+
+.status, .delete-book {
+  border-radius: 10px;
+  padding: 10px;
+  margin: 2px;
 }
 
 .books-container {
   display: flex;
   grid-area: books-container;
-  height: auto;
-  width: 100%;
+  height: 700px;
   padding: 50px;
   background-color: beige;
   flex-wrap: wrap;
   justify-content: space-evenly;
   background-color: var(--book);
+  row-gap: 35px;
 }
 
 .book {
@@ -108,4 +113,8 @@ form > button[type="button"] {
 
 #not-completed {
   background-color: red;
+}
+
+dialog {
+  border-radius: 10px;
 }
