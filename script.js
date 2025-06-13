@@ -41,7 +41,10 @@ function addBookToLibrary(name, author, pages, read) {
     bookdiv.appendChild(bookStatus);
     bookdiv.appendChild(deleteBookBtn);
     booksContainer.appendChild(bookdiv); 
-    
+    deleteBookBtn.addEventListener("click", function(e) {
+      deleteBk(e);
+    });
+
     //storing in the array
     let book = new Book()
     book.name = bookTitle.textContent;
@@ -89,16 +92,15 @@ modal.close();
 addBookToLibrary("Harry Potter", "J K Rowling", 300, true);
 addBookToLibrary("Angels and Demons", "Dan Brown", 300, true);
 addBookToLibrary("The Alchemist", "Paulo Coelho", 300, true);
+addBookToLibrary("Harry Potter", "J K Rowling", 300, true);
+addBookToLibrary("Angels and Demons", "Dan Brown", 300, true);
+addBookToLibrary("The Alchemist", "Paulo Coelho", 300, true);
+addBookToLibrary("Harry Potter", "J K Rowling", 300, true);
+addBookToLibrary("Angels and Demons", "Dan Brown", 300, true);
+addBookToLibrary("The Alchemist", "Paulo Coelho", 300, true);
 
-// delete functionality 
-let deleteBookBtns = document.querySelectorAll(".delete-book");
-  deleteBookBtns.forEach(element => {
-    element.addEventListener("click", function(e) {
-      deleteBk(e);
-    })
-  });
 
-  function deleteBk(e) {
+function deleteBk(e) {
     let bk = e.target.parentNode;
       booksContainer.removeChild(bk);
       let bkID = bk.getAttribute("data-id");
@@ -108,8 +110,9 @@ let deleteBookBtns = document.querySelectorAll(".delete-book");
         let book = myLibrary[i];
         if(book.id == bkID) {
           let index = i;
-          myLibrary.splice(index, index);
+          myLibrary.splice(index, 1);
+          console.log(myLibrary);
+          return;
         }
       }
-      console.log(myLibrary);
   }
