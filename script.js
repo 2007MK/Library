@@ -22,8 +22,8 @@ function addBookToLibrary(name, author, pages, read) {
     bookAuthor.setAttribute("class", "author");
     let bookPages = document.createElement("h2");
     bookPages.setAttribute("class", "pages");
-    let bookStatus = document.createElement("h2");
-    bookStatus.setAttribute("class", "pages");
+    let bookStatus = document.createElement("button");
+    bookStatus.setAttribute("class", "status");
     //delete button 
     let deleteBookBtn = document.createElement("button");
     deleteBookBtn.textContent = "Delete Book";
@@ -32,7 +32,7 @@ function addBookToLibrary(name, author, pages, read) {
     bookTitle.textContent = name;
     bookAuthor.textContent = author;
     bookPages.textContent = pages;
-    bookStatus.textContent = read;
+    bookStatus.textContent = read ? "Completed" : "Not Completed";
     
     //appending elemenets
     bookdiv.appendChild(bookTitle);
@@ -44,7 +44,7 @@ function addBookToLibrary(name, author, pages, read) {
     deleteBookBtn.addEventListener("click", function(e) {
       deleteBk(e);
     });
-
+    
     //storing in the array
     let book = new Book()
     book.name = bookTitle.textContent;
@@ -54,6 +54,10 @@ function addBookToLibrary(name, author, pages, read) {
     book.id = crypto.randomUUID();
     myLibrary.push(book);
     
+
+    bookStatus.addEventListener("click", (e) => {
+      book.toggleStatus(e);
+    })
     // assigning the same id to the book div
     bookdiv.setAttribute("data-id", `${book.id}`);
   };
@@ -116,3 +120,9 @@ function deleteBk(e) {
         }
       }
   }
+
+  Book.prototype.toggleStatus =function(e) {
+    this.read = !(this.read);
+    e.target.textContent = this.read ? 'Completed' : 'Not Completed';
+    console.log(this.read);
+  };

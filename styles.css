@@ -52,7 +52,10 @@
 
 .title,
 .author,
-.pages,
-.status {
+.pages {
   color: white;
+}
+
+.status {
+  padding: 20px;
 }
