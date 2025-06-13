@@ -8,53 +8,56 @@ function Book(name, author, pages, read) {
   this.read = read == true ? true : false;
 }
 
-function addBookToLibrary(bkname, bkauthor, bkpages, bkread) {
-  let book = new Book(bkname, bkauthor, bkpages, bkread);
-  book.id = crypto.randomUUID();
-  myLibrary.push(book);
-}
-
-addBookToLibrary("Harry Potter", "J K Rowling", 300, true);
-addBookToLibrary("Angels and Demons", "Dan Brown", 300, true);
-addBookToLibrary("The Alchemist", "Paulo Coelho", 300, true);
-
-
 let booksContainer = document.querySelector(".books-container");
-function displayBook(myLibrary) {
-  myLibrary.forEach(element => {
-    // creating elements
-    let book = document.createElement("div");
-    book.setAttribute("class", "book");
-    let title = document.createElement("h2");
-    title.setAttribute("class", "title");
-    let author = document.createElement("h2");
-    author.setAttribute("class", "author");
-    let pages = document.createElement("h2");
-    pages.setAttribute("class", "pages");
-    let status = document.createElement("h2");
-    status.setAttribute("class", "pages");
+
+
+
+function addBookToLibrary(name, author, pages, read) {
+  // creating elements
+    let bookdiv = document.createElement("div");
+    bookdiv.setAttribute("class", "book");
+    let bookTitle = document.createElement("h2");
+    bookTitle.setAttribute("class", "title");
+    let bookAuthor = document.createElement("h2");
+    bookAuthor.setAttribute("class", "author");
+    let bookPages = document.createElement("h2");
+    bookPages.setAttribute("class", "pages");
+    let bookStatus = document.createElement("h2");
+    bookStatus.setAttribute("class", "pages");
+    //delete button 
+    let deleteBookBtn = document.createElement("button");
+    deleteBookBtn.textContent = "Delete Book";
+    deleteBookBtn.setAttribute("class", "delete-book")
     //assigning elements
-    title.textContent = element.name;
-    author.textContent = element.author;
-    pages.textContent = element.pages;
-    status.textContent = element.read;
-
-
-
-
-    //appending elemenets
-    book.appendChild(title);
-    book.appendChild(author);
-    book.appendChild(pages);
-    book.appendChild(status);
-    booksContainer.appendChild(book); 
+    bookTitle.textContent = name;
+    bookAuthor.textContent = author;
+    bookPages.textContent = pages;
+    bookStatus.textContent = read;
     
-  });
-}
+    //appending elemenets
+    bookdiv.appendChild(bookTitle);
+    bookdiv.appendChild(bookAuthor);
+    bookdiv.appendChild(bookPages);
+    bookdiv.appendChild(bookStatus);
+    bookdiv.appendChild(deleteBookBtn);
+    booksContainer.appendChild(bookdiv); 
+    
+    //storing in the array
+    let book = new Book()
+    book.name = bookTitle.textContent;
+    book.author = bookAuthor.textContent;
+    book.pages = bookPages.textContent;
+    book.read = bookStatus.textContent;
+    book.id = crypto.randomUUID();
+    myLibrary.push(book);
+    
+    // assigning the same id to the book div
+    bookdiv.setAttribute("data-id", `${book.id}`);
+  };
+  
 
-displayBook(myLibrary);
-
-// making the modal fuctional
+  
+  // making the modal fuctional
 let modal = document.querySelector("dialog");
 let addNewBook = document.querySelector(".new-book");
 let closeModal = document.querySelector(".close-modal")
@@ -69,19 +72,44 @@ closeModal.addEventListener("click", () => {
 })
 
 modal.addEventListener("submit", (e) => {
-e.preventDefault();
-let book = new Book();
-book.name = document.querySelector("#bname").value;
-book.author = document.querySelector("#author").value;
-book.pages = document.querySelector("#pages").value;
-// Add book.read here
-book.id = crypto.randomUUID();
-myLibrary.push(book);
-
+  e.preventDefault();
+let name = document.querySelector("#bname").value;
+let author = document.querySelector("#author").value;
+let pages = document.querySelector("#pages").value;
+let read = (document.querySelector('input[name="status"]:checked').id == 'yes') ?  true :  false;
+addBookToLibrary(name, author, pages, read);
 form.reset();
 modal.close();
-console.log(myLibrary);
 });
 
 
 
+
+// Example books
+addBookToLibrary("Harry Potter", "J K Rowling", 300, true);
+addBookToLibrary("Angels and Demons", "Dan Brown", 300, true);
+addBookToLibrary("The Alchemist", "Paulo Coelho", 300, true);
+
+// delete functionality 
+let deleteBookBtns = document.querySelectorAll(".delete-book");
+  deleteBookBtns.forEach(element => {
+    element.addEventListener("click", function(e) {
+      deleteBk(e);
+    })
+  });
+
+  function deleteBk(e) {
+    let bk = e.target.parentNode;
+      booksContainer.removeChild(bk);
+      let bkID = bk.getAttribute("data-id");
+      console.log(bkID);
+      // deleting from the array
+      for (let i = 0; i < myLibrary.length; i++) {
+        let book = myLibrary[i];
+        if(book.id == bkID) {
+          let index = i;
+          myLibrary.splice(index, index);
+        }
+      }
+      console.log(myLibrary);
+  }
