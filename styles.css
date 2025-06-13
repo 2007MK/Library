@@ -1,9 +1,21 @@
+:root {
+  --background: #264653;
+  --book: #2a9d8f;
+  --optional-color-1: #e9c46a;
+  --optional-color-2: #f4a261;
+  --optional-color-3: #e76f51;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
 .header {
   grid-area: header;
   display: flex;
   justify-content: center;
+  color: white;
 }
-
+body {
+  background-color: var(--background);
+}
 .wrapper {
   display: grid;
   gap: 10px;
@@ -24,30 +36,68 @@
 }
 
 .new-book {
-  max-width: 150px;
+  width: 150px;
+  height: 50px;
+  background-color: var(--optional-color-3);
+  color: var(--optional-color-1);
+  font-weight: 1000;
+  cursor: pointer;
 }
 
 .books-container {
   display: flex;
   grid-area: books-container;
-  height: 800px;
+  height: auto;
   width: 100%;
+  padding: 50px;
   background-color: beige;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  background-color: var(--book);
 }
 
 .book {
+  align-items: center;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
   display: flex;
   flex-direction: column;
-  background-color: gray;
-  max-height: 300px;
+  max-height: 280px;
   width: 250px;
+  background-color: var(--background);
 }
 
 .title,
 .author,
 .pages {
+  color: white;
+}
+
+dialog {
+  background-color: var(--optional-color-3);
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+form {
+  color: var(--optional-color-1);
+}
+
+form > input,
+form > button {
+  display: block;
+  margin: 10px;
+}
+
+form > input[type="submit"] {
+  background-color: var(--book);
+  color: white;
+}
+
+form > button[type="button"] {
+  background-color: red;
   color: white;
 }
 

@@ -15,23 +15,30 @@
         </div>
     </div>
     <dialog closedby="any">
-        <form method="dialog">
-            <label for="bname">Book Name</label>
-            <input type="text" name="bname" id="bname" required>
+        <div class="form-wrapper">
 
-            <label for="author">Author</label>
-            <input type="text" name="author" id="author" required>
+            <form method="dialog">
+                <label for="bname">Book Name</label>
+                <input type="text" name="bname" id="bname" required>
+                
+                <label for="author">Author</label>
+                <input type="text" name="author" id="author" required>
             
-            <label for="pages">Total Pages</label>
-            <input type="text" name="pages" id="pages" required>
+                <label for="pages">Total Pages</label>
+                <input type="text" name="pages" id="pages" required>
+                
             
-            <input type="radio" name="status" id="yes">
-            <label for="yes">YES</label>
-            <input type="radio" name="status" id="no" checked>
-            <label for="no">NO</label>
-
+            <fieldset>
+                <legend>Finish reading the book?</legend>
+                <input type="radio" name="status" id="yes">
+                <label for="yes">YES</label>
+                <input type="radio" name="status" id="no" checked>
+                <label for="no">NO</label>
+            </fieldset>
+            
             <input type="submit" value="ADD BOOK">
             <button class="close-modal" type="button">Close</button>
+        </div>
         </form>
     </dialog>
     <script src="script.js"></script>

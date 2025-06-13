@@ -97,29 +97,23 @@ modal.close();
 
 
 // Example books
-addBookToLibrary("Harry Potter", "J K Rowling", 300, true);
-addBookToLibrary("Angels and Demons", "Dan Brown", 300, true);
-addBookToLibrary("The Alchemist", "Paulo Coelho", 300, true);
-addBookToLibrary("Harry Potter", "J K Rowling", 300, true);
-addBookToLibrary("Angels and Demons", "Dan Brown", 300, true);
-addBookToLibrary("The Alchemist", "Paulo Coelho", 300, true);
-addBookToLibrary("Harry Potter", "J K Rowling", 300, true);
-addBookToLibrary("Angels and Demons", "Dan Brown", 300, true);
-addBookToLibrary("The Alchemist", "Paulo Coelho", 300, true);
+addBookToLibrary("The Hobbit", "J.R.R. Tolkein", 310, true);
+addBookToLibrary("Angels and Demons", "Dan Brown", 616, true);
+addBookToLibrary("The Alchemist", "Paulo Coelho", 19, true);
+addBookToLibrary("Atomic Habits", "James Clear", 320, false);
+addBookToLibrary("The Book Thief", "Markus Zusak", 552, false)
 
 
 function deleteBk(e) {
     let bk = e.target.parentNode;
       booksContainer.removeChild(bk);
       let bkID = bk.getAttribute("data-id");
-      console.log(bkID);
       // deleting from the array
       for (let i = 0; i < myLibrary.length; i++) {
         let book = myLibrary[i];
         if(book.id == bkID) {
           let index = i;
           myLibrary.splice(index, 1);
-          console.log(myLibrary);
           return;
         }
       }
@@ -128,11 +122,9 @@ function deleteBk(e) {
   Book.prototype.toggleStatus =function(e) {
     this.read = !(this.read);
     e.target.textContent = this.read ? 'Completed' : 'Not Completed';
-    console.log(this.read);
     let book = document.querySelector(`.book[data-id='${this.id}']`);
     let button = book.querySelector("button");
     if (this.read) {
-      console.log(button);
       button.setAttribute("id", "completed");      
     } else {
      button.setAttribute("id", "not-completed") ;
