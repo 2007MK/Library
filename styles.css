@@ -45,17 +45,17 @@
   width: 250px;
 }
 
-.book > button {
-  background-color: red;
-  color: white;
-}
-
 .title,
 .author,
 .pages {
   color: white;
 }
 
-.status {
-  padding: 20px;
+#completed {
+  color: white;
+  background-color: green;
+}
+
+#not-completed {
+  background-color: red;
 }

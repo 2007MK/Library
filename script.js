@@ -33,7 +33,11 @@ function addBookToLibrary(name, author, pages, read) {
     bookAuthor.textContent = author;
     bookPages.textContent = pages;
     bookStatus.textContent = read ? "Completed" : "Not Completed";
-    
+    if(read){
+      bookStatus.setAttribute("id", "completed");
+    } else {
+      bookStatus.setAttribute("id", "not-completed");
+    }
     //appending elemenets
     bookdiv.appendChild(bookTitle);
     bookdiv.appendChild(bookAuthor);
@@ -125,4 +129,13 @@ function deleteBk(e) {
     this.read = !(this.read);
     e.target.textContent = this.read ? 'Completed' : 'Not Completed';
     console.log(this.read);
+    let book = document.querySelector(`.book[data-id='${this.id}']`);
+    let button = book.querySelector("button");
+    if (this.read) {
+      console.log(button);
+      button.setAttribute("id", "completed");      
+    } else {
+     button.setAttribute("id", "not-completed") ;
+    }
   };
+
